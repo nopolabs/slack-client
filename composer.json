@@ -29,5 +29,11 @@
         "psr-4": {
             "Slack\\Tests\\": "tests"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:nopolabs/phpws.git"
+        }
+    ]
 }
