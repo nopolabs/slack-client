@@ -43,16 +43,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nopolabs/phpws.git",
-                "reference": "91c131edece604f1a2fb04c44d1539b2c24ca4af"
+                "reference": "ca16803bcbfe3e35c85989cd39da6506184f6da5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nopolabs/phpws/zipball/91c131edece604f1a2fb04c44d1539b2c24ca4af",
-                "reference": "91c131edece604f1a2fb04c44d1539b2c24ca4af",
+                "url": "https://api.github.com/repos/nopolabs/phpws/zipball/ca16803bcbfe3e35c85989cd39da6506184f6da5",
+                "reference": "ca16803bcbfe3e35c85989cd39da6506184f6da5",
                 "shasum": ""
             },
             "require": {
-                "react/socket": "0.4.*",
+                "react/socket": "0.5.*",
                 "react/socket-client": "0.5.*",
                 "react/stream": "0.4.*",
                 "zendframework/zend-http": "2.*",
@@ -74,7 +74,7 @@
             "support": {
                 "source": "https://github.com/nopolabs/phpws/tree/master"
             },
-            "time": "2017-02-08 05:09:09"
+            "time": "2017-03-19 05:10:02"
         },
         {
             "name": "evenement/evenement",
@@ -661,16 +661,16 @@
         },
         {
             "name": "react/socket",
-            "version": "v0.4.6",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/socket.git",
-                "reference": "cf074e53c974df52388ebd09710a9018894745d2"
+                "reference": "c0e337e375d5fb064da4ba62a91a29815e7502f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/socket/zipball/cf074e53c974df52388ebd09710a9018894745d2",
-                "reference": "cf074e53c974df52388ebd09710a9018894745d2",
+                "url": "https://api.github.com/repos/reactphp/socket/zipball/c0e337e375d5fb064da4ba62a91a29815e7502f8",
+                "reference": "c0e337e375d5fb064da4ba62a91a29815e7502f8",
                 "shasum": ""
             },
             "require": {
@@ -678,7 +678,7 @@
                 "php": ">=5.3.0",
                 "react/event-loop": "0.4.*|0.3.*",
                 "react/promise": "^2.0 || ^1.1",
-                "react/stream": "^0.4.5"
+                "react/stream": "^0.6 || ^0.5 || ^0.4.5"
             },
             "require-dev": {
                 "clue/block-react": "^1.1",
@@ -699,7 +699,7 @@
             "keywords": [
                 "Socket"
             ],
-            "time": "2017-01-26T09:23:38+00:00"
+            "time": "2017-03-09T12:13:07+00:00"
         },
         {
             "name": "react/socket-client",
