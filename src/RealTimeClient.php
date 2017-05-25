@@ -371,9 +371,11 @@ class RealTimeClient extends ApiClient
         try {
             $this->handlePayload($payload);
         } catch (Throwable $throwable) {
-            $this->logger->warning('Payload handling error: '.$throwable->getMessage());
-            $this->logger->warning('Payload: '.$payload->toJson());
-            $this->logger->warning($throwable->getTraceAsString());
+            $context = [
+                'payload' => $message->getData(),
+                'stackTrace' => $throwable->getTrace(),
+            ];
+            $this->logger->error('Payload handling error: '.$throwable->getMessage(), $context);
         }
     }
 
