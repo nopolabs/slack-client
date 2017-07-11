@@ -334,11 +334,23 @@ class RealTimeClient extends ApiClient
         }
 
         $data = [
-            'id' => ++$this->lastMessageId,
             'type' => 'message',
             'channel' => $message->data['channel'],
             'text' => $message->getText(),
         ];
+
+        return $this->sendMessage($data);
+    }
+
+    public function ping()
+    {
+        return $this->sendMessage(['type' => 'ping']);
+    }
+
+    public function sendMessage(array $data)
+    {
+        $data['id'] = ++$this->lastMessageId;
+
         $this->websocket->send(json_encode($data));
 
         // Create a deferred object and add message to pending list so when a
@@ -381,7 +393,7 @@ class RealTimeClient extends ApiClient
 
     private function handlePayload(Payload $payload)
     {
-        if (isset($payload['type'])) {
+        if (!$this->isReply($payload)) {
             switch ($payload['type']) {
                 case 'hello':
                     $this->connected = true;
@@ -467,8 +479,8 @@ class RealTimeClient extends ApiClient
                     $deferred = $this->pendingMessages[$payload['reply_to']];
 
                     // Resolve or reject the promise that was waiting for the reply.
-                    if (isset($payload['ok']) && $payload['ok'] === true) {
-                        $deferred->resolve();
+                    if ($this->accepted($payload)) {
+                        $deferred->resolve($payload);
                     } else {
                         $deferred->reject($payload['error']);
                     }
@@ -477,5 +489,27 @@ class RealTimeClient extends ApiClient
                 }
             }
         }
+    }
+
+    private function accepted(Payload $payload) : bool
+    {
+        if (isset($payload['ok'])) {
+            return $payload['ok'] === true;
+        }
+
+        if (isset($payload['type'])) {
+            return $payload['type'] === 'pong';
+        }
+
+        return false;
+    }
+
+    private function isReply(Payload $payload) : bool
+    {
+        if (!isset($payload['type'])) {
+            return true;
+        }
+
+        return $payload['type'] === 'pong';
     }
 }
